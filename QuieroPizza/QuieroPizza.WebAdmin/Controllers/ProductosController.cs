@@ -33,16 +33,30 @@ namespace QuieroPizza.WebAdmin.Controllers
             var nuevoProducto = new Producto();
             var categorias = _categoriasBL.ObtenerCategorias();
 
-            ViewBag.CategoriaId = new SelectList(categorias, "Id", "Descripcion");
+            ViewBag.CategoriaId = 
+                new SelectList(categorias, "Id", "Descripcion");
             return View(nuevoProducto);
         }
 
         [HttpPost]
         public ActionResult Crear(Producto producto)
         {
-            _productosBL.GuardarProducto(producto);
+            if (ModelState.IsValid)
+            {
+                if (producto.CategoriaId == 0)
+                {
+                    ModelState.AddModelError("CategoriaId", "Seleccione una categoria");
+                    return View(producto);
+                }
+                _productosBL.GuardarProducto(producto);
 
-            return RedirectToAction("Index");
+                return RedirectToAction("Index");
+            }
+            var categorias = _categoriasBL.ObtenerCategorias();
+
+            ViewBag.CategoriaId =
+                new SelectList(categorias, "Id", "Descripcion");
+            return View(producto);
         }
 
         public ActionResult Editar(int id)
@@ -59,8 +73,22 @@ namespace QuieroPizza.WebAdmin.Controllers
         [HttpPost]
         public ActionResult Editar(Producto producto)
         {
-            _productosBL.GuardarProducto(producto);
-            return RedirectToAction("Index");
+           if (ModelState.IsValid)
+            {
+                if (producto.CategoriaId == 0)
+                {
+                    ModelState.AddModelError("CategoriaId", "Seleccione una categoria");
+                    return View(producto);
+                }
+                _productosBL.GuardarProducto(producto);
+
+                return RedirectToAction("Index");
+            }
+            var categorias = _categoriasBL.ObtenerCategorias();
+
+            ViewBag.CategoriaId =
+                new SelectList(categorias, "Id", "Descripcion");
+            return View(producto);
         }
 
         public ActionResult Detalle(int id)
