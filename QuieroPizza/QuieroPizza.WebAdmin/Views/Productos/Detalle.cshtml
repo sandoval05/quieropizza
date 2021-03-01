@@ -18,7 +18,7 @@
             @Html.DisplayFor(model => model.descripcion)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Categoria.Descripcion)
+            @Html.DisplayNameFor(model => model.Categoria)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Categoria.Descripcion)
@@ -29,6 +29,18 @@
 
         <dd>
             @Html.DisplayFor(model => model.precio)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UrlImagen)
+        </dt>
+        <dd>
+            <img src="@Model.UrlImagen" alt="@Model.descripcion" style="width:200px; height:auto;"/>
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Activo)
+        </dt>
+        <dd>
+            @Html.DisplayNameFor(model => model.Activo)
         </dd>
 
     </dl>

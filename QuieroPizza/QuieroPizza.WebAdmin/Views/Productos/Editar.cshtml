@@ -7,7 +7,7 @@
 <h2>Editar</h2>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Editar", "Productos", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     
@@ -40,6 +40,29 @@
                     @Html.ValidationMessageFor(model => model.precio, "", new { @class = "text-danger" })
                 </div>
             </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">Seleccionar Imagen</label>
+            <div class="col-md-10">
+                <input type="file" name="imagen" id="imagen" />
+            </div>
+            <div class="col-md-8">
+                <img src="@Model.UrlImagen" alt="@Model.descripcion" style="width:200px; height:auto;" />
+
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Activo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+
+                    @Html.EditorFor(model => model.Activo)
+                    @Html.ValidationMessageFor(model => model.Activo)
+                </div>
+            </div>
+        </div>
+
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">

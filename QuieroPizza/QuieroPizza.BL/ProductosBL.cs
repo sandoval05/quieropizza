@@ -41,6 +41,7 @@ namespace QuieroPizza.BL
                 var productoExistente = _contexto.Productos.Find(producto.id);
                 productoExistente.descripcion = producto.descripcion;
                 productoExistente.precio = producto.precio;
+                productoExistente.UrlImagen = producto.UrlImagen;
             }
            
             _contexto.SaveChanges();

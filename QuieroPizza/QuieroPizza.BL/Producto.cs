@@ -16,6 +16,7 @@ namespace QuieroPizza.BL
 
         public int id { get; set; }
 
+        [Display(Name = "Descripción")]
         [Required(ErrorMessage = "Ingrese la descripcion")]
         [MinLength(3, ErrorMessage = "Ingrese minimo 3 caracteres")]
         [MaxLength(20, ErrorMessage = "Ingrese maximo 20 caracteres")]
@@ -26,6 +27,9 @@ namespace QuieroPizza.BL
         public double precio { get; set; }
         public int CategoriaId { get; set; }
         public Categoria Categoria { get; set; }
+
+        [Display(Name ="Imagen")]
+        public string UrlImagen { get; set; }
         public bool Activo { get; set; }
     }
 }
