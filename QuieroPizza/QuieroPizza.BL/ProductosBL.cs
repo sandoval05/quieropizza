@@ -23,7 +23,10 @@ namespace QuieroPizza.BL
         public List<Producto> ObtenerProductos()
         {
 
-            Listadeproductos =  _contexto.Productos.ToList();
+            Listadeproductos =  _contexto.Productos
+                .Include("Categoria")
+                .ToList();
+
             return Listadeproductos; 
         }
 
@@ -45,7 +48,8 @@ namespace QuieroPizza.BL
 
         public Producto ObtenerProducto(int id)
         {
-            var producto = _contexto.Productos.Find(id);
+            var producto = _contexto.Productos
+                .Include("Categoria").FirstOrDefault(p => p.id == id); 
             return producto;
         }
 
